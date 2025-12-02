@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="Favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Tech Lab - Verified Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d6efd; /* Blue gradient icon */
+            --text-dark: #e2e8f0;
+            --text-light: #94a3b8;
+            --bg-dark: #0d0f12;
+            --border-dark: #1f242c;
+            --font-main: 'Segoe UI', Inter, system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-main);
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* NEW HEADER */
+        header {
+            width: 100%;
+            background: var(--bg-dark);
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Left Section */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1e88ff, #0062ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .logo-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text-dark);
+        }
+
+        .site-name span {
+            color: #1e90ff;
+        }
+
+        .site-tagline {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        nav a:hover { opacity: 1; }
+
+        .dropdown-arrow {
+            font-size: 10px;
+            margin-left: 4px;
+        }
+
+        /* Rest of your existing CSS remains unchanged… */
+
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            color: var(--text-light);
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            padding: 40px 0;
+            gap: 20px;
+        }
+
+        .feature-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .icon-blue { background: #eff6ff; color: #3b82f6; }
+        .icon-green { background: #f0fdf4; color: #22c55e; }
+        .icon-purple { background: #f5f3ff; color: #8b5cf6; }
+
+        .feature-item h3 { font-size: 16px; margin-bottom: 8px; }
+        .feature-item p { font-size: 13px; color: var(--text-light); max-width: 220px; }
+
+        /* Software List */
+        .software-section {
+            padding: 40px 0;
+            background: var(--bg-light); /* Slight separation */
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 { font-size: 18px; font-weight: 600; }
+        .section-header p { font-size: 14px; color: var(--text-light); margin-top: 5px; }
+
+        .software-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+
+        .software-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .sw-icon {
+            width: 50px;
+            height: 50px;
+            background: #f8fafc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .sw-content { flex-grow: 1; }
+
+        .sw-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .sw-title { font-weight: 600; font-size: 16px; }
+        .sw-version { font-size: 12px; font-weight: 600; background: #f1f5f9; padding: 2px 8px; border-radius: 4px; }
+
+        .sw-desc { font-size: 14px; color: var(--text-light); margin-bottom: 12px; }
+
+        .sw-platforms { margin-bottom: 15px; }
+
+        .sw-actions { display: flex; gap: 10px; }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-dark {
+            background: #0f172a;
+            color: white;
+            border: 1px solid #0f172a;
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-outline:hover { background: #f8fafc; }
+
+        /* Why Verify Section */
+        .verify-section {
+            padding: 80px 0;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .verify-content { flex: 1; }
+        .verify-image { flex: 1; }
+
+        .verify-content h2 { font-size: 24px; margin-bottom: 20px; }
+        .verify-content p { color: var(--text-light); font-size: 15px; margin-bottom: 20px; }
+        
+        .check-list { list-style: none; }
+        .check-list li {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-dark);
+            align-items: center;
+        }
+        .check-list i { color: #22c55e; font-size: 14px; background: #dcfce7; padding: 4px; border-radius: 50%; }
+
+        .img-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #0f172a; /* Dark bg like screenshot */
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 0 30px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 { font-size: 14px; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { text-decoration: none; color: var(--text-light); }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .features { flex-direction: column; }
+            .verify-section { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-flex { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<body>
+
+<header>
+    <div class="nav-container">
+
+        <!-- Left section: icon + text -->
+        <div class="header-left">
+            <div class="logo-icon">
+                <i class="fa-solid fa-arrow-down"></i>
+            </div>
+
+            <div class="logo-title">
+                <div class="site-name">TotalTechLab<span>.com</span></div>
+                <div class="site-tagline">Verified legal software & tools</div>
+            </div>
+        </div>
+
+        <!-- Right navigation -->
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">WINDOWS</a></li>
+                <li><a href="#">MACOS</a></li>
+                <li><a href="#">MORE <i class="fa-solid fa-chevron-down dropdown-arrow"></i></a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+
+    <section class="hero">
+        <div class="container">
+            <h1>Download software you can trust</h1>
+            <p>Total Tech Lab curates official download links, checksums, and changelogs so you can verify installers before you run them. Always follow vendor licensing and obtain software from official sources.</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <div class="icon-circle icon-blue"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Official Sources</h3>
+                    <p>Direct links to vendor-verified downloads</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle icon-green"><i class="fa-solid fa-check"></i></div>
+                    <h3>Verified Checksums</h3>
+                    <p>SHA-256 hashes for integrity validation</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle icon-purple"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Complete Changelogs</h3>
+                    <p>Know exactly what's new in each version</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="software-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Software</h2>
+                <p>Popular development tools and applications with verified downloads</p>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #007acc;"><i class="fa-solid fa-code"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Visual Studio Code</div>
+                        <div class="sw-version">1.94.2</div>
+                    </div>
+                    <p class="sw-desc">Powerful code editor with IntelliSense and debugging</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #f1502f;"><i class="fa-brands fa-git-alt"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Git</div>
+                        <div class="sw-version">2.45.0</div>
+                    </div>
+                    <p class="sw-desc">Distributed version control system for tracking changes</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #68a063;"><i class="fa-brands fa-node-js"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Node.js</div>
+                        <div class="sw-version">20.10.0 LTS</div>
+                    </div>
+                    <p class="sw-desc">JavaScript runtime built on Chrome's V8 engine</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="software-card">
+                <div class="sw-icon" style="color: #3776ab;"><i class="fa-brands fa-python"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Python</div>
+                        <div class="sw-version">3.12.1</div>
+                    </div>
+                    <p class="sw-desc">High-level programming language for general purpose</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="container verify-section">
+        <div class="verify-content">
+            <h2>Why verify your downloads?</h2>
+            <p>Every year, millions of users unknowingly download compromised software from unofficial sources. These malicious versions can contain malware, spyware, or other security threats.</p>
+            <p>Total Tech Lab helps you stay safe by providing direct links to official vendor downloads and the tools to verify their authenticity through cryptographic checksums.</p>
+            
+            <ul class="check-list">
+                <li><i class="fa-solid fa-check"></i> Official vendor sources only</li>
+                <li><i class="fa-solid fa-check"></i> Checksum verification</li>
+                <li><i class="fa-solid fa-check"></i> License compliance</li>
+            </ul>
+        </div>
+        <div class="verify-image">
+            <div class="img-placeholder">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workspace">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 15px;">
+                        <div class="logo-icon"><i class="fa-solid fa-cube"></i></div>
+                        Total Tech Lab
+                    </a>
+                    <p style="color: var(--text-light); font-size: 13px; margin-top: 15px; max-width: 250px;">
+                        Curating official software downloads with verified checksums and changelogs.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">All Software</a></li>
+                        <li><a href="#">Developer Tools</a></li>
+                        <li><a href="#">Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">How to Verify</a></li>
+                        <li><a href="#">Security Best Practices</a></li>
+                        <li><a href="#">About Checksums</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Total Tech Lab. All software and trademarks belong to their respective owners.</p>
+                <p>We provide links to official sources only. Always verify checksums and follow vendor licensing.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

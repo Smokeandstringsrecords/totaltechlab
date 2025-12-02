@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy — TotalTechLab.com</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="description" content="Privacy Policy for TotalTechLab — how we collect, use, and protect your information."/>
+  <style>
+    :root{
+      --bg-dark:#0d0f12;
+      --card:#0b1220;
+      --accent:#1e90ff;
+      --muted:#94a3b8;
+      --text:#e6eef9;
+      --page-bg:#ffffff;
+      --container:1200px;
+      --radius:12px;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --font: "Segoe UI", Inter, system-ui, -apple-system, "Helvetica Neue", Arial;
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:var(--font);
+      background:var(--page-bg);
+      color:#0f172a;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Sticky header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:9999;
+      background:var(--bg-dark);
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      box-shadow:0 2px 8px rgba(2,6,23,0.4);
+    }
+    .nav-wrap{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .left {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo-square{
+      width:44px;height:44px;border-radius:10px;overflow:hidden;
+      background:linear-gradient(135deg,#1e88ff,#0062ff); display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+    }
+    .logo-square img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand{
+      display:flex;flex-direction:column;line-height:1;
+    }
+    .brand .title{font-weight:700;color:var(--text);font-size:16px}
+    .brand .title .dotcom{color:var(--accent);margin-left:6px;font-weight:800}
+    .brand .sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+    nav ul{list-style:none;display:flex;gap:28px;align-items:center}
+    nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:14px;opacity:0.95}
+    .actions{display:flex;align-items:center;gap:12px}
+
+    /* Main content area */
+    main{
+      max-width:1000px;
+      margin:34px auto;
+      padding:0 20px 80px;
+    }
+
+    .policy-card{
+      background:linear-gradient(180deg, #fff, #fbfdff);
+      border-radius:14px;
+      padding:30px;
+      border:1px solid rgba(15,23,42,0.04);
+      box-shadow: 0 8px 30px rgba(15,23,42,0.04);
+    }
+
+    h1{font-size:28px;margin-bottom:8px;color:#0f172a}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:22px}
+    h2{font-size:18px;color:#0f172a;margin-top:24px;margin-bottom:10px}
+    p{margin-bottom:12px;color:#16324b}
+    ul{margin-left:18px;margin-bottom:12px}
+    li{margin-bottom:8px;color:#16324b}
+
+    .section{
+      padding-top:6px;
+      border-top:1px dashed rgba(15,23,42,0.03);
+      margin-top:18px;
+      padding-top:18px;
+    }
+
+    .highlight{
+      background:linear-gradient(90deg, rgba(30,144,255,0.06), rgba(34,197,94,0.03));
+      padding:10px 12px;border-radius:8px;border:1px solid rgba(15,23,42,0.02);
+      color:#0b2540;font-weight:600;margin:14px 0;
+    }
+
+    /* Footer small */
+    .policy-footer{margin-top:26px;border-top:1px solid rgba(15,23,42,0.04);padding-top:16px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+    /* Responsive */
+    @media (max-width:780px){
+      .nav-wrap{padding:12px}
+      nav ul{display:none}
+      .brand .title{font-size:15px}
+      main{margin:22px auto}
+      .policy-card{padding:20px}
+    }
+     /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 0 30px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 { font-size: 14px; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { text-decoration: none; color: var(--text-light); }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .features { flex-direction: column; }
+            .verify-section { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .nav-flex { flex-direction: column; gap: 15px; }
+        }
+  </style>
+</head>
+<body>
+
+  <!-- Header (matching site theme) -->
+  <header>
+    <div class="nav-wrap">
+      <div class="left">
+        <div class="logo-square" aria-hidden="true">
+          <img src="/mnt/data/2809a5a8-c581-4b03-9397-401568f2bd09.png" alt="TotalTechLab logo">
+        </div>
+        <div class="brand" role="banner">
+          <div class="title">TotalTechLab<span class="dotcom">.com</span></div>
+          <div class="sub">Verified legal software &amp; tools</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">WINDOWS</a></li>
+          <li><a href="#">MACOS</a></li>
+          <li><a href="#">MORE</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions" aria-hidden="true">
+        <button title="Search" style="background:transparent;border:0;color:var(--text);font-size:16px"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Privacy Policy content -->
+  <main>
+    <article class="policy-card" role="article" aria-labelledby="policy-title">
+      <header>
+        <h1 id="policy-title">Privacy Policy</h1>
+        <div class="meta">Last updated: <strong>2025-11-23</strong> · Effective for <strong>TotalTechLab.com</strong></div>
+      </header>
+
+      <section>
+        <p>This Privacy Policy describes how <strong>TotalTechLab</strong> ("we", "us", or "our") collects, uses, and protects information when you visit <strong>TotalTechLab.com</strong> (the "Site"). By using our Site you accept the practices described in this policy.</p>
+      </section>
+
+      <section class="section" aria-labelledby="personal-heading">
+        <h2 id="personal-heading">Personal identification information</h2>
+        <p>We may collect personal information that you voluntarily provide when you use the Site — for example when you subscribe to our newsletter, submit a contact form, or otherwise interact with features that request your details.</p>
+        <ul>
+          <li>Typical examples of personal identification information include your <strong>name</strong> and <strong>email address</strong>.</li>
+          <li>You may use many parts of the Site anonymously; we only collect personal information if you share it voluntarily.</li>
+          <li>If you refuse to provide personal information you may be unable to use certain features that require it.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="nonpersonal-heading">
+        <h2 id="nonpersonal-heading">Non-personal identification information</h2>
+        <p>We may collect non-personal identification information about visitors automatically. This includes technical details such as:</p>
+        <ul>
+          <li>Browser name and version</li>
+          <li>Device and operating system</li>
+          <li>Internet service provider and IP address (aggregated)</li>
+          <li>Pages viewed and navigation patterns</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="cookies-heading">
+        <h2 id="cookies-heading">The use of web browser cookies</h2>
+        <p>Our Site may use "cookies" to enhance user experience. Cookies allow us to remember preferences and provide access to features. Enabling cookies will provide full functionality of the Site; however, enabling them is at your discretion and you may disable cookies in your browser settings.</p>
+      </section>
+
+      <section class="section" aria-labelledby="howuse-heading">
+        <h2 id="howuse-heading">How do we use collected information?</h2>
+        <p><strong>TotalTechLab</strong> may use collected data for the following purposes:</p>
+        <ul>
+          <li><strong>To improve customer service</strong> — information helps us respond to your individual needs more effectively.</li>
+          <li><strong>To personalize user experience</strong> — understand how our products and services are used so we can tailor content and features.</li>
+          <li><strong>To improve our Site</strong> — feedback and usage data help us refine and expand features.</li>
+          <li><strong>To send periodic emails</strong> — your email address may be used to respond to inquiries, questions, or other requests (you may opt out).</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="protect-heading">
+        <h2 id="protect-heading">How do we protect your information?</h2>
+        <p>We adopt appropriate data collection, storage and processing practices and security measures to protect personal data against unauthorized access, alteration, disclosure or destruction. This includes:</p>
+        <ul>
+          <li>Secure server environments and encrypted transmissions where appropriate</li>
+          <li>Access controls and reasonable administrative safeguards</li>
+          <li>Regular reviews of our security practices</li>
+        </ul>
+        <p>Our Site aims to comply with relevant security standards to create a safe environment for users.</p>
+      </section>
+
+      <section class="section" aria-labelledby="share-heading">
+        <h2 id="share-heading">How do we share your personal information?</h2>
+        <p>We do not sell, trade, or rent your personal information. We may share aggregated demographic information with business partners, trusted affiliates, and advertisers for general analytics and improvement of services — none of which will identify an individual.</p>
+        <p>We may employ third-party service providers to perform functions such as delivering newsletters or surveys. These providers are granted access only to the information necessary to perform their service and are obligated to protect that data.</p>
+      </section>
+
+      <section class="section" aria-labelledby="ads-heading">
+        <h2 id="ads-heading">Advertisements &amp; third parties</h2>
+        <p>Advertisements served on our Site may use cookies to recognize your device and compile anonymous information about your usage for the purpose of delivering targeted advertising. This Privacy Policy does not cover the practices of advertisers or other third parties.</p>
+
+        <h3 style="font-size:15px;margin-top:12px;margin-bottom:8px">Google advertisements</h3>
+        <p>Ads served by Google may use the DART cookie which uses non-personally identifiable information. To opt out of the DART cookie and learn more about Google’s advertising policies, please visit Google's ad/privacy pages (for example: <a href="https://www.google.com/privacy_ads.html" target="_blank" rel="noopener noreferrer">https://www.google.com/privacy_ads.html</a>).</p>
+      </section>
+
+      <section class="section" aria-labelledby="changes-heading">
+        <h2 id="changes-heading">Changes to this Privacy Policy</h2>
+        <p><strong>TotalTechLab</strong> may update this Privacy Policy from time to time. When we do, we will post the updated policy on this page and update the “Last updated” date above. It is your responsibility to review this page periodically to stay informed of changes.</p>
+      </section>
+
+      <section class="section" aria-labelledby="accept-heading">
+        <h2 id="accept-heading">Acceptance of terms</h2>
+        <p>By using this Site, you signify your acceptance of this Privacy Policy. If you do not agree to any part of this policy, please do not use the Site or features that require your personal data.</p>
+      </section>
+
+      <div class="highlight" role="note">
+        If you have questions about this Privacy Policy or your data, contact us at <a href="mailto:privacy@totaltechlab.com">privacy@totaltechlab.com</a>.
+      </div>
+
+      <footer class="policy-footer">
+        <div>© <strong>TotalTechLab</strong> — All rights reserved.</div>
+        <div style="text-align:right">Effective date: <strong>2025-11-23</strong></div>
+      </footer>
+    </article>
+  </main>
+<footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 15px;">
+                        <div class="logo-icon"><i class="fa-solid fa-cube"></i></div>
+                        Total Tech Lab
+                    </a>
+                    <p style="color: var(--text-light); font-size: 13px; margin-top: 15px; max-width: 250px;">
+                        Curating official software downloads with verified checksums and changelogs.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">All Software</a></li>
+                        <li><a href="#">Developer Tools</a></li>
+                        <li><a href="#">Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">How to Verify</a></li>
+                        <li><a href="#">Security Best Practices</a></li>
+                        <li><a href="#">About Checksums</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Total Tech Lab. All software and trademarks belong to their respective owners.</p>
+                <p>We provide links to official sources only. Always verify checksums and follow vendor licensing.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

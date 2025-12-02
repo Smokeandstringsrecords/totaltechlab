@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Total Tech Lab – Business Website Builder</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #05040b;
+            --bg-elevated: #070716;
+            --card: #0c0b1c;
+            --accent: #f81ce5;
+            --accent-soft: #7f5dff;
+            --accent-grad: linear-gradient(135deg, #ff00cc, #7f5dff);
+            --text-main: #f5f5ff;
+            --text-soft: #a0a3c2;
+            --border-subtle: rgba(255,255,255,0.06);
+            --radius-lg: 18px;
+            --radius-pill: 999px;
+            --shadow-soft: 0 20px 60px rgba(0,0,0,0.75);
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #151231 0, #05040b 45%, #000 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            inset-inline: 0;
+            top: 0;
+            z-index: 40;
+            background: rgba(5,4,11,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        nav h1 {
+            font-size: 1.35rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        nav a {
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.18s ease;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+        .nav-cta {
+            padding: 0.55rem 1.3rem;
+            border-radius: var(--radius-pill);
+            border: none;
+            cursor: pointer;
+            background-image: var(--accent-grad);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.82rem;
+            box-shadow: 0 16px 32px rgba(214, 51, 255, 0.6);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 140px 0 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 18px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(248,28,229,0.5);
+            background: radial-gradient(circle at top left, rgba(248,28,229,0.22), transparent 60%);
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            margin-bottom: 24px;
+        }
+        .hero-pill span.icon {
+            font-size: 1.05rem;
+        }
+        .hero-eyebrow {
+            font-size: 0.9rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 12px;
+        }
+        .hero h2 {
+            font-size: 3.1rem;
+            line-height: 1.12;
+            margin-bottom: 10px;
+        }
+        .hero h2 span {
+            background-image: var(--accent-grad);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.02rem;
+            color: var(--text-soft);
+            max-width: 640px;
+            margin: 18px auto 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .btn-primary {
+            padding: 0.95rem 2.6rem;
+            border-radius: var(--radius-pill);
+            border: none;
+            cursor: pointer;
+            background-image: var(--accent-grad);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.98rem;
+            box-shadow: 0 18px 40px rgba(214, 51, 255, 0.65);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 26px 60px rgba(214, 51, 255, 0.9);
+        }
+        .btn-ghost {
+            padding: 0.95rem 2.4rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-subtle);
+            background: rgba(10,9,26,0.85);
+            color: var(--text-main);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .btn-ghost:hover {
+            border-color: rgba(255,255,255,0.18);
+            background: rgba(18,17,38,0.95);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 18px;
+            margin-top: 12px;
+        }
+        .stat-card {
+            background: radial-gradient(circle at top left, rgba(127,93,255,0.18), #05040b 70%);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-soft);
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .stat-helper {
+            font-size: 0.86rem;
+            color: var(--text-soft);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+        }
+        h3.section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .section-kicker {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin-bottom: 40px;
+        }
+
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+        .service-card {
+            background: #070716;
+            border-radius: var(--radius-lg);
+            padding: 22px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+        }
+        .service-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, rgba(127,93,255,0.7), rgba(248,28,229,0.2));
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+        .service-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            margin-bottom: 10px;
+        }
+        .service-tag {
+            font-size: 0.78rem;
+            color: var(--accent-soft);
+        }
+
+        /* PORTFOLIO */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #11101f;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+            min-height: 210px;
+        }
+        .portfolio-thumb {
+            height: 150px;
+            background: radial-gradient(circle at top left, rgba(127,93,255,0.5), #05040b);
+        }
+        .portfolio-content {
+            padding: 16px 18px 18px;
+        }
+        .portfolio-title {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .portfolio-meta {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            margin-bottom: 8px;
+        }
+        .portfolio-tag {
+            font-size: 0.78rem;
+            color: var(--accent-soft);
+        }
+
+        /* CONTACT */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+            gap: 28px;
+        }
+        .contact-copy {
+            font-size: 0.96rem;
+            color: var(--text-soft);
+        }
+        .contact-copy strong {
+            color: #ffffff;
+        }
+        .contact-points {
+            margin-top: 18px;
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+        .contact-points p span {
+            color: #ffffff;
+        }
+
+        .contact-form {
+            background: #070716;
+            padding: 22px 20px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-soft);
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.86rem;
+            color: var(--text-soft);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #201f35;
+            background: #05040b;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.16s ease, background 0.16s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-soft);
+            background: #070716;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 18px 0 26px;
+            font-size: 0.82rem;
+            color: var(--text-soft);
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* simple for now; can add mobile menu later */
+            .hero { padding-top: 120px; }
+            .hero h2 { font-size: 2.4rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .contact-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="container">
+        <h1>Total Tech Lab</h1>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="container hero-inner">
+            <div class="hero-pill">
+                <span class="icon">🚀</span>
+                <span>Available for new projects</span>
+            </div>
+
+            <div class="hero-eyebrow">Business Website Builder</div>
+            <h2>Transform Your Business<br><span>With Stunning Websites</span></h2>
+            <p class="hero-subtitle">
+                High‑performance websites that convert visitors into customers. From sleek landing pages to complex web applications, your brand gets a digital home built to grow.
+            </p>
+
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Get Your Free Quote
+                </button>
+                <button class="btn-ghost" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+                    View My Work
+                </button>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-value">100+</div>
+                    <div class="stat-helper">Across startups, agencies, and growing brands.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Client Satisfaction</div>
+                    <div class="stat-value">98%</div>
+                    <div class="stat-helper">Repeat clients and long‑term partnerships.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Support</div>
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-helper">Fast responses for urgent updates and fixes.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="container">
+            <h3 class="section-title">Services</h3>
+            <p class="section-kicker">Everything needed to launch or upgrade a business‑ready website.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h4>Custom Website Design</h4>
+                    <p>Pixel‑perfect, responsive designs tailored to your brand and business goals.</p>
+                    <span class="service-tag">Brand‑first layouts • Modern UI</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛒</div>
+                    <h4>E‑commerce Stores</h4>
+                    <p>Conversion‑focused online stores with secure checkout and smooth product browsing.</p>
+                    <span class="service-tag">WooCommerce • Shopify • Custom</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h4>SEO & Performance</h4>
+                    <p>Fast load times, clean structure, and on‑page SEO to help you rank and convert.</p>
+                    <span class="service-tag">Core Web Vitals • On‑page SEO</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h4>Ongoing Maintenance</h4>
+                    <p>Updates, security checks, backups, and quick fixes handled for you.</p>
+                    <span class="service-tag">Retainers • Care plans</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <div class="container">
+            <h3 class="section-title">Recent Work</h3>
+            <p class="section-kicker">A snapshot of projects crafted for high conversion and clear storytelling.</p>
+
+            <div class="portfolio-grid">
+                <article class="portfolio-item">
+                    <div class="portfolio-thumb"></div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Fashion E‑commerce Store</div>
+                        <div class="portfolio-meta">Redesigned product pages and checkout flow to increase sales.</div>
+                        <div class="portfolio-tag">+240% online revenue</div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item">
+                    <div class="portfolio-thumb"></div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Consulting Company Website</div>
+                        <div class="portfolio-meta">Lead‑gen focused site with clear service breakdown and CTA.</div>
+                        <div class="portfolio-tag">3× more qualified leads</div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item">
+                    <div class="portfolio-thumb"></div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Restaurant Booking Site</div>
+                        <div class="portfolio-meta">Online menu, reservations, and events in one simple experience.</div>
+                        <div class="portfolio-tag">Fully automated bookings</div>
+                    </div>
+                </article>
+
+                <article class="portfolio-item">
+                    <div class="portfolio-thumb"></div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">SaaS Landing Page</div>
+                        <div class="portfolio-meta">Hypothesis‑driven layout built to test and scale campaigns.</div>
+                        <div class="portfolio-tag">45% signup conversion</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <h3 class="section-title">Start Your Project</h3>
+            <p class="section-kicker">Share a few details and get a tailored proposal straight to your inbox.</p>
+
+            <div class="contact-layout">
+                <div>
+                    <p class="contact-copy">
+                        <strong>Tell more about the business, goals, and timelines.</strong> 
+                        The more context shared, the better the site can be designed to convert visitors into real customers.
+                    </p>
+                    <div class="contact-points">
+                        <p><span>Typical timeline:</span> 2–4 weeks for most projects.</p>
+                        <p><span>Deliverables:</span> Design, development, basic SEO, and launch support.</p>
+                        <p><span>Location:</span> Remote – working with clients worldwide.</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input id="name" type="text" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget">Approx. Budget (optional)</label>
+                        <input id="budget" type="text" placeholder="e.g. ₹40,000 – ₹80,000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" placeholder="Briefly describe your business, what you need, and target launch date." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 WebCraft. All rights reserved. Crafted to turn visitors into customers.</p>
+    </div>
+</footer>
+
+<script>
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert("Thank you! Your message has been sent. You will receive a reply within 24 hours.");
+        e.target.reset();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Total Tech Lab - Verified Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --bg-dark: #0d0f12;
+            --border-dark: #1f242c;
+            --muted: #94a3b8;
+            --white: #ffffff;
+            --container-width: 1200px;
+            --font-main: 'Segoe UI', Inter, system-ui, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            color: #111827;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER (NEW) ===== */
+        header {
+            width: 100%;
+            background: var(--bg-dark);
+            color: var(--white);
+            border-bottom: 1px solid var(--border-dark);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        /* Left: logo block */
+        .header-left {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1e88ff, #0062ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo-title {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .site-name {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--white);
+            letter-spacing: -0.2px;
+        }
+
+        .site-name .dotcom { color: #4aa3ff; margin-left: 4px; font-weight: 800; }
+
+        .site-tagline {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* Center / Right nav */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: .4px;
+            opacity: .95;
+        }
+
+        .nav-links a:hover { opacity: 1; }
+
+        /* Dropdown */
+        .nav-item {
+            position: relative;
+        }
+
+        .more-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: #0b0d10;
+            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(3,7,18,0.6);
+            padding: 10px 8px;
+            display: none;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px 12px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 6px;
+        }
+
+        .dropdown a:hover { background: rgba(255,255,255,0.03); }
+
+        /* search */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 0;
+            opacity: 0;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            color: var(--white);
+            transition: width 180ms ease, opacity 180ms ease, padding 180ms ease;
+            font-size: 14px;
+        }
+
+        .search-input.show {
+            width: 220px;
+            opacity: 1;
+            padding: 8px 10px;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hamburger (mobile) */
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 6px;
+        }
+
+        /* Mobile nav overlay */
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 64px;
+            background: linear-gradient(180deg, rgba(13,15,18,0.98), rgba(7,9,12,0.98));
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding: 14px 20px;
+            z-index: 9998;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .mobile-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .mobile-submenu {
+            padding-left: 10px;
+            display: none;
+            margin-top: 6px;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .mobile-submenu a {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--muted);
+            padding: 8px 12px;
+        }
+
+        /* ===== KEEP EXISTING PAGE STYLES AFTER HEADER ===== */
+
+        /* small subset of your previous styles (kept minimal here) */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero { text-align: center; padding: 80px 0 60px; }
+        .hero h1 { font-size: 28px; font-weight: 600; margin-bottom: 15px; color: #0f172a; }
+        .hero p { color: #64748b; font-size: 15px; max-width: 600px; margin: 0 auto; }
+
+        /* (rest of original styles omitted here for brevity, they remain unchanged below the header) */
+
+        /* ===== Responsive ===== */
+        @media (max-width: 880px) {
+            .nav-links { gap: 18px; }
+            .nav-container { padding: 12px 16px; }
+        }
+
+        @media (max-width: 720px) {
+            .nav-links { display: none; }
+            .hamburger { display: inline-flex; }
+            .header-actions { gap: 8px; }
+            .site-tagline { display: none; }
+        }
+
+        @media (max-width: 520px) {
+            .search-input.show { width: 160px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ===== NEW STICKY HEADER ===== -->
+    <header>
+  <style>
+    /* Scoped header CSS - placed inline so it's loaded before other page styles */
+    header { --bg: #0d0f12; --white:#fff; --muted:#94a3b8; --accent:#4aa3ff; position:sticky; top:0; z-index:9999; background:var(--bg); border-bottom:1px solid rgba(255,255,255,0.04); }
+    header .nav-container {
+      max-width:1200px;
+      margin:0 auto;
+      padding:12px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    /* Logo area (scoped to header so original .logo-icon won't break it) */
+    header .logo-block { display:flex; gap:12px; align-items:center; }
+    header .logo-block .logo-icon {
+      width:44px; height:44px; border-radius:10px; overflow:hidden;
+      background:linear-gradient(135deg,#1e88ff,#0062ff);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    /* Prefer the uploaded image path; change to a relative path if needed.
+       Example relative path: ./assets/logo.png  OR ./favicon.png  */
+    header .logo-block .logo-icon img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    header .logo-block .logo-text { display:flex; flex-direction:column; line-height:1; }
+    header .logo-block .site-name { color:var(--white); font-weight:700; font-size:17px; }
+    header .logo-block .site-name .dotcom { color:var(--accent); margin-left:4px; font-weight:800; }
+    header .logo-block .site-tagline { color:var(--muted); font-size:12px; margin-top:2px; }
+
+    /* Desktop nav */
+    header nav { display:flex; align-items:center; gap:20px; }
+    header .nav-links { list-style:none; display:flex; gap:28px; align-items:center; margin:0; padding:0; }
+    header .nav-links a { color:var(--white); text-decoration:none; font-weight:600; font-size:14px; opacity:.95; }
+
+    /* MORE dropdown (scoped) */
+    header .nav-item { position:relative; }
+    header .more-toggle { display:inline-flex; gap:6px; align-items:center; cursor:pointer; }
+    header .more-dropdown {
+      position:absolute; top:calc(100% + 10px); right:0;
+      background:#0b0d10; border-radius:8px; padding:8px; min-width:200px;
+      box-shadow:0 8px 24px rgba(3,7,18,0.6); border:1px solid rgba(255,255,255,0.03);
+      display:none;
+    }
+    header .more-dropdown a { display:block; padding:10px 12px; color:var(--white); text-decoration:none; border-radius:6px; font-size:13px; }
+    header .more-dropdown a:hover{ background: rgba(255,255,255,0.03); }
+
+    /* Actions */
+    header .header-actions { display:flex; align-items:center; gap:12px; }
+    header .search-wrap { position:relative; display:flex; align-items:center; gap:8px; }
+    header .search-input {
+      width:0; opacity:0; transition: width .18s ease, opacity .18s ease, padding .18s ease;
+      padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);
+      background:rgba(255,255,255,0.02); color:var(--white); font-size:14px;
+    }
+    header .search-input.show { width:220px; opacity:1; padding:8px 10px; }
+
+    header .icon-btn, header .hamburger { background:transparent; border:none; color:var(--white); cursor:pointer; padding:6px; font-size:16px; }
+
+    /* Mobile nav - positioned relative to header so it doesn't push content when closed */
+    header .mobile-nav { display:none; position:absolute; left:0; right:0; top:100%; background:linear-gradient(180deg, rgba(13,15,18,0.98), rgba(7,9,12,0.98)); padding:12px 20px; border-bottom:1px solid rgba(255,255,255,0.03); z-index:9998; }
+    header .mobile-links { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+    header .mobile-links a { color:var(--white); text-decoration:none; padding:10px; border-radius:8px; display:block; }
+
+    /* Mobile submenu */
+    header .mobile-submenu { display:none; padding-left:10px; gap:6px; flex-direction:column; margin-top:6px; }
+    header .mobile-submenu a { color:var(--muted); padding:8px 12px; }
+
+    /* Responsive */
+    @media (max-width:720px) {
+      header .nav-links{ display:none; }
+      header .hamburger{ display:inline-flex; }
+      header .site-tagline{ display:none; }
+      header .search-input.show { width:160px; }
+    }
+  </style>
+
+  <div class="nav-container">
+    <!-- LEFT: logo -->
+    <div class="logo-block" style="align-items:center;">
+      <div class="logo-icon" title="TotalTechLab logo">
+        <!-- use uploaded file path (tool will map this path) -->
+        <img src="/mnt/data/2809a5a8-c581-4b03-9397-401568f2bd09.png" alt="TotalTechLab logo">
+        <!-- If that path doesn't load in your environment, replace with a relative path like:
+             <img src="./assets/logo.png" alt="logo"> -->
+      </div>
+      <div class="logo-text">
+        <div class="site-name">TotalTechLab<span class="dotcom">.com</span></div>
+        <div class="site-tagline">Verified legal software &amp; tools</div>
+      </div>
+    </div>
+
+    <!-- Center/Right nav -->
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#">HOME</a></li>
+        <li class="nav-item"><a href="#">WINDOWS</a></li>
+        <li class="nav-item"><a href="#">MACOS</a></li>
+        <li class="nav-item" id="moreItem">
+          <a class="more-toggle" href="javascript:void(0)" aria-haspopup="true" aria-expanded="false">
+            MORE <i class="fa-solid fa-chevron-down" style="font-size:10px"></i>
+          </a>
+          <div class="more-dropdown" id="moreDropdown" aria-label="More menu">
+            <a href="#">About</a>
+            <a href="#">Guides</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- actions -->
+    <div class="header-actions">
+      <div class="search-wrap">
+        <input type="search" id="headerSearch" class="search-input" placeholder="Search downloads, tools..." aria-label="Search">
+        <button class="icon-btn" id="searchBtn" aria-label="Open search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+
+    <!-- mobile nav (hidden by default) -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <ul class="mobile-links">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">WINDOWS</a></li>
+        <li><a href="#">MACOS</a></li>
+        <li>
+          <a href="javascript:void(0)" id="mobileMoreToggle" style="display:flex;justify-content:space-between;align-items:center;">
+            MORE <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="mobile-submenu" id="mobileSubmenu">
+            <a href="#">About</a>
+            <a href="#">Guides</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+          </div>
+        </li>
+        <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i> Search</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Scoped header JS (no global selector collisions)
+    (function(){
+      const moreItem = document.getElementById('moreItem');
+      const moreDropdown = document.getElementById('moreDropdown');
+      const moreToggle = moreItem && moreItem.querySelector('.more-toggle');
+
+      if (moreItem) {
+        moreItem.addEventListener('mouseenter', ()=> { if (window.innerWidth > 720) moreDropdown.style.display = 'block'; });
+        moreItem.addEventListener('mouseleave', ()=> { if (window.innerWidth > 720) moreDropdown.style.display = 'none'; });
+        moreToggle && moreToggle.addEventListener('click', (e)=> { e.preventDefault(); const open = moreDropdown.style.display==='block'; moreDropdown.style.display = open ? 'none' : 'block'; moreToggle.setAttribute('aria-expanded', String(!open)); });
+      }
+
+      // search toggle
+      const searchBtn = document.getElementById('searchBtn');
+      const searchInput = document.getElementById('headerSearch');
+      searchBtn && searchBtn.addEventListener('click', (e)=>{ e.preventDefault(); const showing = searchInput.classList.toggle('show'); if(showing) searchInput.focus(); else searchInput.blur(); });
+
+      // mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileMoreToggle = document.getElementById('mobileMoreToggle');
+      const mobileSubmenu = document.getElementById('mobileSubmenu');
+
+      hamburger && hamburger.addEventListener('click', ()=> {
+        const open = mobileNav.style.display === 'block';
+        mobileNav.style.display = open ? 'none' : 'block';
+        hamburger.innerHTML = open ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-xmark"></i>';
+      });
+
+      mobileMoreToggle && mobileMoreToggle.addEventListener('click', (e)=> { e.preventDefault(); const open = mobileSubmenu.style.display === 'flex'; mobileSubmenu.style.display = open ? 'none' : 'flex'; });
+
+      // close on outside click
+      document.addEventListener('click', (e)=> {
+        if (!document.querySelector('header').contains(e.target)) {
+          moreDropdown && (moreDropdown.style.display = 'none');
+          searchInput && searchInput.classList.remove('show');
+        }
+      });
+
+      // ensure mobile nav hidden when resizing to desktop
+      window.addEventListener('resize', ()=> {
+        if (window.innerWidth > 720) {
+          mobileNav && (mobileNav.style.display = 'none');
+          mobileSubmenu && (mobileSubmenu.style.display = 'none');
+          hamburger && (hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>');
+          moreDropdown && (moreDropdown.style.display = 'none');
+        }
+      });
+    })();
+  </script>
+</header>
+<!-- ===== END header replacement ===== -->
+ 
+    <!-- ===== REST OF YOUR PAGE (UNCHANGED) ===== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Download software you can trust</h1>
+            <p>Total Tech Lab curates official download links, checksums, and changelogs so you can verify installers before you run them. Always follow vendor licensing and obtain software from official sources.</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <div class="icon-circle icon-blue"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Official Sources</h3>
+                    <p>Direct links to vendor-verified downloads</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle icon-green"><i class="fa-solid fa-check"></i></div>
+                    <h3>Verified Checksums</h3>
+                    <p>SHA-256 hashes for integrity validation</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-circle icon-purple"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Complete Changelogs</h3>
+                    <p>Know exactly what's new in each version</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- (rest of your original markup remains exactly as you provided) -->
+    <section class="software-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Software</h2>
+                <p>Popular development tools and applications with verified downloads</p>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #007acc;"><i class="fa-solid fa-code"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Visual Studio Code</div>
+                        <div class="sw-version">1.94.2</div>
+                    </div>
+                    <p class="sw-desc">Powerful code editor with IntelliSense and debugging</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #f1502f;"><i class="fa-brands fa-git-alt"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Git</div>
+                        <div class="sw-version">2.45.0</div>
+                    </div>
+                    <p class="sw-desc">Distributed version control system for tracking changes</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="software-card">
+                <div class="sw-icon" style="color: #68a063;"><i class="fa-brands fa-node-js"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Node.js</div>
+                        <div class="sw-version">20.10.0 LTS</div>
+                    </div>
+                    <p class="sw-desc">JavaScript runtime built on Chrome's V8 engine</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="software-card">
+                <div class="sw-icon" style="color: #3776ab;"><i class="fa-brands fa-python"></i></div>
+                <div class="sw-content">
+                    <div class="sw-header">
+                        <div class="sw-title">Python</div>
+                        <div class="sw-version">3.12.1</div>
+                    </div>
+                    <p class="sw-desc">High-level programming language for general purpose</p>
+                    <div class="sw-platforms">
+                        <span class="badge">Windows</span>
+                        <span class="badge">macOS</span>
+                        <span class="badge">Linux</span>
+                    </div>
+                    <div class="sw-actions">
+                        <a href="#" class="btn btn-dark"><i class="fa-solid fa-download"></i> Download</a>
+                        <a href="#" class="btn btn-outline"><i class="fa-regular fa-heart"></i> Verify & Details</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="container verify-section">
+        <div class="verify-content">
+            <h2>Why verify your downloads?</h2>
+            <p>Every year, millions of users unknowingly download compromised software from unofficial sources. These malicious versions can contain malware, spyware, or other security threats.</p>
+            <p>Total Tech Lab helps you stay safe by providing direct links to official vendor downloads and the tools to verify their authenticity through cryptographic checksums.</p>
+            
+            <ul class="check-list">
+                <li><i class="fa-solid fa-check"></i> Official vendor sources only</li>
+                <li><i class="fa-solid fa-check"></i> Checksum verification</li>
+                <li><i class="fa-solid fa-check"></i> License compliance</li>
+            </ul>
+        </div>
+        <div class="verify-image">
+            <div class="img-placeholder">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workspace">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 15px;">
+                        <div class="logo-icon" style="width:40px;height:40px;border-radius:8px;"><i class="fa-solid fa-cube"></i></div>
+                        Total Tech Lab
+                    </a>
+                    <p style="color: #64748b; font-size: 13px; margin-top: 15px; max-width: 250px;">
+                        Curating official software downloads with verified checksums and changelogs.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">All Software</a></li>
+                        <li><a href="#">Developer Tools</a></li>
+                        <li><a href="#">Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="#">How to Verify</a></li>
+                        <li><a href="#">Security Best Practices</a></li>
+                        <li><a href="#">About Checksums</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="text-align:center;padding-top:20px;border-top:1px solid #e6eef9;color:#64748b;">
+                <p>© 2024 Total Tech Lab. All software and trademarks belong to their respective owners.</p>
+                <p>We provide links to official sources only. Always verify checksums and follow vendor licensing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Desktop "MORE" dropdown: open on hover, click also toggles
+        const moreItem = document.getElementById('moreItem');
+        const moreDropdown = document.getElementById('moreDropdown');
+
+        // show on hover (desktop)
+        moreItem.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 720) moreDropdown.style.display = 'block';
+        });
+        moreItem.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 720) moreDropdown.style.display = 'none';
+        });
+
+        // toggle on click (touch devices)
+        const moreToggle = moreItem.querySelector('.more-toggle');
+        moreToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const isOpen = moreDropdown.style.display === 'block';
+            moreDropdown.style.display = isOpen ? 'none' : 'block';
+            moreToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        // Search toggle
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('headerSearch');
+
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const showing = searchInput.classList.toggle('show');
+            if (showing) {
+                searchInput.focus();
+            } else {
+                searchInput.blur();
+            }
+        });
+
+        // Close dropdown/search if clicking outside
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+            if (!moreItem.contains(target)) {
+                moreDropdown.style.display = 'none';
+                moreToggle.setAttribute('aria-expanded', 'false');
+            }
+            if (!document.querySelector('.search-wrap').contains(target)) {
+                searchInput.classList.remove('show');
+            }
+        });
+
+        // Mobile hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileMoreToggle = document.getElementById('mobileMoreToggle');
+        const mobileSubmenu = document.getElementById('mobileSubmenu');
+
+        hamburger.addEventListener('click', () => {
+            const open = mobileNav.style.display === 'block';
+            mobileNav.style.display = open ? 'none' : 'block';
+            // toggle hamburger icon to X
+            hamburger.innerHTML = open ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-xmark"></i>';
+        });
+
+        mobileMoreToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const open = mobileSubmenu.style.display === 'flex';
+            mobileSubmenu.style.display = open ? 'none' : 'flex';
+        });
+
+        // ensure things hide when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 720) {
+                mobileNav.style.display = 'none';
+                mobileSubmenu.style.display = 'none';
+                hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+            if (window.innerWidth > 720) {
+                // hide mobile dropdown and ensure desktop dropdown hidden by default
+                moreDropdown.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
